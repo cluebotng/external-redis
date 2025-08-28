@@ -7,7 +7,7 @@ from pathlib import PosixPath
 from typing import Optional, List, Union, Dict, Any
 
 
-def write_config(path: PosixPath) -> None:
+def write_config(config_path: PosixPath) -> None:
     config = {
         'bind': '*',
         'protected-mode': 'no',
@@ -33,18 +33,19 @@ def write_config(path: PosixPath) -> None:
     if not config['requirepass']:
         raise RuntimeError("No REDIS_PASSWORD set")
 
-    with path.open('w') as fh:
+    with config_path.open('w') as fh:
         for k, v in config.items():
             fh.write(f'{k} {v}\n')
 
 
 def run_redis(config_path: PosixPath):
     # Note: We replace the current process, rather than running as a sub-process
-    return os.execv("redis-server", ["redis-server", config_path.as_posix()])
+    return os.execv("/layers/heroku_deb-packages/packages/usr/bin/redis-server",
+                    ["redis-server", config_path.as_posix()])
 
 
 def main():
-    config_path = PosixPath("/tmp/config.alloy")
+    config_path = PosixPath("/tmp/redis.conf")
     write_config(config_path)
     run_redis(config_path)
 
