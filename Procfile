@@ -1,0 +1,1 @@
+run-redis: ./entrypoint.py
