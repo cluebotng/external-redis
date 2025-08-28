@@ -3,6 +3,7 @@ schema-version = "0.2"
 
 [com.heroku.buildpacks.deb-packages]
 install = [
+    "libatomic1",
     "redis",
 ]
 
