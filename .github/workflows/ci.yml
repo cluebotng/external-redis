@@ -9,7 +9,7 @@ jobs:
 
   execute-lint:
     needs: [setup-build]
-    uses: infrabits/ci-run-tox-env/.github/workflows/run.yml@fc2ac57315686a6f9faab108be2be0a74e55a9a4 # main
+    uses: infrabits/ci-run-tox-env/.github/workflows/run.yml@19f9bbd03df394ba63d7644e7afa80dcf6adfb2a # main
     with:
       environments: ${{ needs.setup-build.outputs.lint }}
 
