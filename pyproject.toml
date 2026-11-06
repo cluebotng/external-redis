@@ -5,17 +5,17 @@ requires-python = ">=3.14"
 dependencies = [
     # Need at least 1 dep as the build pack installs against the "main" group,
     # which doesn't exist if there are no dependencies...
-    "pip"
+    "pip (>=26.3,<27.0)"
 ]
 
 [tool.poetry]
 package-mode = false
 
 [tool.poetry.group.test.dependencies]
-tox = "*"
-tox-current-env = "*"
-black = "*"
-ruff = "*"
+tox = "^4.67.12"
+tox-current-env = "^0.0.17"
+black = "^26.10.1"
+ruff = "^0.17.4"
 
 [tool.ruff]
 line-length = 120
